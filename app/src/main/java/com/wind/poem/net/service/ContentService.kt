@@ -3,7 +3,6 @@ package com.wind.poem.net.service
 import com.wind.poem.models.JsonResult
 import com.wind.poem.models.Poem
 import io.reactivex.Observable
-import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Query
 
