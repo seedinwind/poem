@@ -14,7 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.wind.poem.R
-import com.wind.poem.net.business.getPoemsByAuthor
+import com.wind.poem.net.extensions.getPoemsByAuthor
 import io.reactivex.functions.Consumer
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

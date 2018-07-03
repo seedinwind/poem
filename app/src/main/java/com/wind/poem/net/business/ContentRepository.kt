@@ -11,10 +11,13 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by Jiwei Yuan on 18-7-3.
  */
-object ContentRepository {
-    private val service: ContentService by lazy {
-        RetrofitUtil.instance.create(ContentService::class.java)
+class ContentRepository {
+    companion object {
+        private val service: ContentService by lazy {
+            RetrofitUtil.instance.create(ContentService::class.java)
+        }
     }
+
 
     fun getPoemsByAuthor(author: String, onNext: Consumer<in JsonResult<List<Poem>>>, onError: Consumer<in Throwable>) {
         service.findPoemsByAuthor(author)
@@ -23,8 +26,4 @@ object ContentRepository {
                 .subscribe(onNext, onError)
     }
 
-}
-
-fun getPoemsByAuthor(author: String, onNext: Consumer<JsonResult<List<Poem>>>, onError: Consumer<in Throwable>) {
-    ContentRepository.getPoemsByAuthor(author, onNext, onError)
 }
