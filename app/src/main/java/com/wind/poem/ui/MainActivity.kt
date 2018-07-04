@@ -13,9 +13,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.wind.poem.R
+import com.wind.poem.models.Poem
 import com.wind.poem.net.ErrorListener
+import com.wind.poem.net.NextListener
 import com.wind.poem.net.extensions.getPoemsByAuthor
-import io.reactivex.functions.Consumer
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -72,15 +73,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else if (id == R.id.nav_gallery) {
             startActivity(Intent(this@MainActivity, MapActivity::class.java))
         } else if (id == R.id.nav_slideshow) {
-            getPoemsByAuthor("李白", Consumer {
-                it.data?.let {
-                    it.forEach {
-                        Toast.makeText(this@MainActivity, it.title, Toast.LENGTH_SHORT).show()
-                    }
+            getPoemsByAuthor("李白", object : NextListener<List<Poem>>() {
+                override fun onDataSuccess(data: List<Poem>) {
+                    Toast.makeText(this@MainActivity, data[0].title, Toast.LENGTH_SHORT).show()
                 }
             }, object : ErrorListener() {
                 override fun httpError(code: Int) {
-
+                    Toast.makeText(this@MainActivity, code.toString(), Toast.LENGTH_SHORT).show()
                 }
             })
         } else if (id == R.id.nav_manage) {
