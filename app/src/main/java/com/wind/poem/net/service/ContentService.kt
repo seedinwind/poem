@@ -11,6 +11,6 @@ interface ContentService{
     @POST("/content/poem/title")
     fun findPoemsByTitle(@Query("title")title:String ): Observable<JsonResult<List<Poem>>>
 
-    @POST("/content/poem/author")
+    @POST("/media/image/upload")
     fun findPoemsByAuthor(@Query("author")author:String ): Observable<JsonResult<List<Poem>>>
 }

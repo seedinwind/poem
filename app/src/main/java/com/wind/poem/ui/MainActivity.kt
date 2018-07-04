@@ -1,9 +1,8 @@
 package com.wind.poem.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -14,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.wind.poem.R
+import com.wind.poem.net.ErrorListener
 import com.wind.poem.net.extensions.getPoemsByAuthor
 import io.reactivex.functions.Consumer
 
@@ -24,12 +24,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
-
-        val fab = findViewById<View>(R.id.fab) as FloatingActionButton
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
 
         val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         val toggle = ActionBarDrawerToggle(
@@ -76,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            startActivity(Intent(this@MainActivity, MapActivity::class.java))
         } else if (id == R.id.nav_slideshow) {
             getPoemsByAuthor("李白", Consumer {
                 it.data?.let {
@@ -84,8 +78,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         Toast.makeText(this@MainActivity, it.title, Toast.LENGTH_SHORT).show()
                     }
                 }
-            }, Consumer {
-                it.printStackTrace()
+            }, object : ErrorListener() {
+                override fun httpError(code: Int) {
+
+                }
             })
         } else if (id == R.id.nav_manage) {
 
