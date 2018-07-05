@@ -45,24 +45,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
-
-
-        return if (id == R.id.action_settings) {
-            true
-        } else super.onOptionsItemSelected(item)
-
-    }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        menuInflater.inflate(R.menu.main, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        val id = item.itemId
+//
+//
+//        return if (id == R.id.action_settings) {
+//            true
+//        } else super.onOptionsItemSelected(item)
+//
+//    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
@@ -73,19 +73,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else if (id == R.id.nav_gallery) {
             startActivity(Intent(this@MainActivity, MapActivity::class.java))
         } else if (id == R.id.nav_slideshow) {
-            getPoemsByAuthor("李白", object : NextListener<List<Poem>>() {
-                override fun onDataSuccess(data: List<Poem>) {
-                    Toast.makeText(this@MainActivity, data[0].title, Toast.LENGTH_SHORT).show()
-                }
-            }, object : ErrorListener() {
-                override fun httpError(code: Int) {
-                    Toast.makeText(this@MainActivity, code.toString(), Toast.LENGTH_SHORT).show()
-                }
-            })
+            getPoemsByAuthor("李白",
+                    object : NextListener<List<Poem>>() {
+                        override fun onDataSuccess(data: List<Poem>) {
+                            Toast.makeText(this@MainActivity, data[0].title, Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    object : ErrorListener() {
+                        override fun httpError(code: Int) {
+                            Toast.makeText(this@MainActivity, code.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                    })
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-
+            startActivity(Intent(this@MainActivity, TestActivity::class.java))
         } else if (id == R.id.nav_send) {
 
         }
