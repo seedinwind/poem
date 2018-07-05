@@ -2,14 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/darker_gray"
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.wind.poem.widget.PoemAnimateView
-        android:id="@+id/poemAnimate"
+    <com.wind.poem.widget.PoemImageView
+        android:id="@+id/poemAImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.wind.poem.widget.PoemAnimateView>
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"/>
 </LinearLayout>

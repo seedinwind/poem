@@ -2,6 +2,7 @@ package com.wind.poem.ui
 
 import android.os.Bundle
 import com.wind.poem.R
+import com.wind.poem.widget.PoemAnimateView
 import kotlinx.android.synthetic.main.test.*
 
 /**
@@ -16,7 +17,7 @@ class TestActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        poemAnimate.poem = "春晓 春眠不觉晓 处处闻啼鸟 夜来风雨声 花落知多少"
-        poemAnimate.showPoem()
+        poemAImage.addPoem( "春晓 春眠不觉晓 处处闻啼鸟 夜来风雨声 花落知多少")
+        poemAImage.startShow()
     }
 }

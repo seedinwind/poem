@@ -25,8 +25,8 @@ class PoemAnimateView : LinearLayout {
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context?) : this(context, null)
 
-    val poems: MutableList<String> = mutableListOf()
-    var duration: Long = 2000
+    private val poems: MutableList<String> = mutableListOf()
+    private var duration: Long = 2000
     var poem: String = ""
         set(value) {
             splited = value.split(" ")
@@ -85,6 +85,4 @@ class PoemAnimateView : LinearLayout {
     class TestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val text: PlumbTextView = itemView.findViewById(R.id.text)
     }
-
-
 }
