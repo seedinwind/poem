@@ -17,7 +17,7 @@ class TestActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        poemAImage.addPoem( "春晓 春眠不觉晓 处处闻啼鸟 夜来风雨声 花落知多少")
-        poemAImage.startShow()
+        poemAImage.findViewById<PoemAnimateView>(R.id.poemAnimate).poem = "春晓 春眠不觉晓 处处闻啼鸟 夜来风雨声 花落知多少"
+        poemAImage.findViewById<PoemAnimateView>(R.id.poemAnimate).showPoem()
     }
 }

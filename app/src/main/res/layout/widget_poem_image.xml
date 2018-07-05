@@ -3,12 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <com.wind.poem.widget.AutoAdjustImageView
-        android:id="@+id/bgImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@mipmap/else12"/>
     <View
-        android:id="@+id/layer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#a0ffffff"/>
