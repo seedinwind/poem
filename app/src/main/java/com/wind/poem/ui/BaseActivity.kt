@@ -1,10 +1,10 @@
 package com.wind.poem.ui
 
-import android.support.v7.app.AppCompatActivity
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
 /**
  * Created by Jiwei Yuan on 18-7-4.
  */
-abstract class BaseActivity :AppCompatActivity(){
+abstract class BaseActivity : RxAppCompatActivity(){
 
 }

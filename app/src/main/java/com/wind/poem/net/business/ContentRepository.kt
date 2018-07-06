@@ -1,5 +1,8 @@
 package com.wind.poem.net.business
 
+import com.trello.rxlifecycle2.LifecycleProvider
+import com.trello.rxlifecycle2.android.ActivityEvent
+import com.trello.rxlifecycle2.kotlin.bindUntilEvent
 import com.wind.poem.models.JsonResult
 import com.wind.poem.models.Poem
 import com.wind.poem.net.RetrofitUtil
@@ -19,8 +22,9 @@ class ContentRepository {
     }
 
 
-    fun getPoemsByAuthor(author: String, onNext: Consumer<in JsonResult<List<Poem>>>, onError: Consumer<in Throwable>) {
+    fun getPoemsByAuthor(provider: LifecycleProvider<ActivityEvent>, author: String, onNext: Consumer<in JsonResult<List<Poem>>>, onError: Consumer<in Throwable>) {
         service.findPoemsByAuthor(author)
+                .bindUntilEvent(provider,ActivityEvent.DESTROY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(onNext, onError)
