@@ -1,6 +1,8 @@
 package com.wind.poem.ui
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -8,19 +10,23 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.trello.rxlifecycle2.LifecycleProvider
+import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import com.wind.poem.R
 import com.wind.poem.models.Poem
 import com.wind.poem.net.ErrorListener
 import com.wind.poem.net.NextListener
 import com.wind.poem.net.extensions.getPoemsByAuthor
+import com.wind.poem.ui.presenter.TestPresenter
 import io.reactivex.Observable
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,19 +79,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            startActivity(Intent(this@MainActivity, MapActivity::class.java))
+            startActivity(Intent(this@MainActivity , MapActivity::class.java))
         } else if (id == R.id.nav_slideshow) {
-            getPoemsByAuthor(this@MainActivity,"李白",
-                    object : NextListener<List<Poem>>() {
-                        override fun onDataSuccess(data: List<Poem>) {
-                            Toast.makeText(this@MainActivity, data[0].title, Toast.LENGTH_SHORT).show()
-                        }
-                    },
-                    object : ErrorListener() {
-                        override fun httpError(code: Int) {
-                            Toast.makeText(this@MainActivity, code.toString(), Toast.LENGTH_SHORT).show()
-                        }
-                    })
+
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -98,4 +94,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
+
+
 }
