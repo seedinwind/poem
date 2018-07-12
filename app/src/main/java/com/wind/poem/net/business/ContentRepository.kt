@@ -29,4 +29,5 @@ class ContentRepository {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(onNext, onError)
     }
+
 }

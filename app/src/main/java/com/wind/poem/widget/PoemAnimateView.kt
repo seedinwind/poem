@@ -67,22 +67,20 @@ class PoemAnimateView : LinearLayout {
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
             val item = LayoutInflater.from(context).inflate(R.layout.item_poem, null)
-            return TestViewHolder(item)
+            return PoemViewHolder(item)
         }
-
 
         override fun getItemCount(): Int {
             return poems.size
         }
 
-
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-            (holder as TestViewHolder).text.text = poems[position]
+            (holder as PoemViewHolder).text.text = poems[position]
         }
 
     }
 
-    class TestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class PoemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val text: PlumbTextView = itemView.findViewById(R.id.text)
     }
 }
