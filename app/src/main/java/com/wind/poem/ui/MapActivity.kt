@@ -19,6 +19,6 @@ class MapActivity : BaseActivity() {
         setContentView(R.layout.act_map)
         mBaiduMap = bmapView.map
         mBaiduMap.addOverlay(BaiduUtil.createAddressOverlay(30.084277, 103.859729, R.mipmap.home))
-        mBaiduMap.setMapStatus(BaiduUtil.createMapStatus(30.084277, 103.859729, 8f))
+        mBaiduMap.setMapStatus(BaiduUtil.createMapStatus(30.084277, 103.859729, 10f))
     }
 }
