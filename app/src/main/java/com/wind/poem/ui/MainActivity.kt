@@ -15,6 +15,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.blankj.utilcode.util.ToastUtils
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
@@ -24,6 +25,7 @@ import com.wind.poem.net.ErrorListener
 import com.wind.poem.net.NextListener
 import com.wind.poem.net.extensions.getPoemsByAuthor
 import com.wind.poem.ui.presenter.TestPresenter
+import com.wind.poem.utils.DeviceUtil
 import io.reactivex.Observable
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -87,7 +89,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         } else if (id == R.id.nav_share) {
             startActivity(Intent(this@MainActivity, TestActivity::class.java))
         } else if (id == R.id.nav_send) {
-
+                if (DeviceUtil.isInstalled(this@MainActivity,"com.tencent.android.qqdownloader")){
+                    ToastUtils.showLong("已安装应用宝")
+                }
         }
 
         val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout

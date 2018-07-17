@@ -1,6 +1,7 @@
 package com.wind.poem.utils
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import android.util.DisplayMetrics
 import android.view.WindowManager
@@ -27,8 +28,19 @@ object DeviceUtil {
         return Build.BRAND
     }
 
-    fun getAndroidVersion(): Int {
+    fun getSDKVersion(): Int {
         return Build.VERSION.SDK_INT
+    }
+
+    fun isInstalled(context: Context, packageName: String): Boolean {
+        var hasPackage = true
+        try {
+            context.packageManager.getPackageInfo(packageName, PackageManager.GET_GIDS)
+        } catch (e: Exception) {
+            // 抛出找不到的异常，说明该程序已经被卸载
+            hasPackage = false
+        }
+        return hasPackage
     }
 
 
