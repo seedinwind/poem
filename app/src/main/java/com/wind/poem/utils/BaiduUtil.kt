@@ -1,5 +1,7 @@
 package com.wind.poem.utils
 
+import android.graphics.Color
+import android.widget.TextView
 import com.baidu.mapapi.map.*
 import com.baidu.mapapi.model.LatLng
 
@@ -21,10 +23,18 @@ object BaiduUtil {
      * 創建中心點位置信息
      */
     fun createMapStatus(lat: Double, lng: Double, zoom: Float): MapStatusUpdate {
-        return  MapStatusUpdateFactory.newMapStatus(
+        return MapStatusUpdateFactory.newMapStatus(
                 MapStatus.Builder()
                         .target(LatLng(lat, lng))
                         .zoom(zoom)
                         .build())
     }
+
+    fun createPopInfo(lat: Double, lng: Double, info: String): InfoWindow {
+        val textView = TextView(ApplicationProvider.provide())
+        textView.setTextColor(Color.BLACK)
+        textView.text = info
+        return InfoWindow(textView, LatLng(lat, lng), -47)
+    }
+
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wind.poem.widget.DefaultFontTextView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sayaki="http://schemas.android.com/tools"
+    android:layout_width="50dp"
+    android:layout_height="150dp"
+    sayaki:columnSpacing="20dp"
+    android:paddingTop="20dp"
+    sayaki:leftLine="true"
+    sayaki:leftLinePadding="4dp"
+    sayaki:letterSpacing="6dp"
+    sayaki:textSize="16sp" />

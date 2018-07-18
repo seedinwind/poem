@@ -82,6 +82,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
             startActivity(Intent(this@MainActivity , MapActivity::class.java))
+            ToastUtils.showLong("已跳转")
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
